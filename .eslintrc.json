@@ -1,0 +1,61 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.test.js",
+        "*.spec.js"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "arrow-parens": ["warn", "as-needed"],
+    "babel/no-invalid-this": "error",
+    "comma-dangle": ["error", "never"],
+    "implicit-arrow-linebreak": "off",
+    "import/extensions": "warn",
+    "import/no-extraneous-dependencies": "warn",
+    "import/prefer-default-export": "warn",
+    "indent": ["error", 2, { "MemberExpression": 1, "SwitchCase": 1 }],
+    "linebreak-style": "off",
+    "no-console": "warn",
+    "no-invalid-this": "off",
+    "no-underscore-dangle": "warn",
+    "object-curly-newline": ["error", {"consistent": true}],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["warn", "double"],
+    "react/jsx-filename-extension": ["warn", {"extensions": [".js"]}],
+    "react/jsx-wrap-multilines": ["warn"],
+    "react/prop-types": "warn",
+    "require-jsdoc": "off"
+  }
+}
