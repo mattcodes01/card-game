@@ -7,13 +7,18 @@
   border-radius: 5px;
   color: #ffffff;
   font-size: 1.2rem;
-  transition: background-color 0.5s;
-  /* white-space: nowrap; */
-  /* text-decoration: none; */
-  /* font-weight: 500; */
+  transition: background-color 0.25s;
+  user-select: none;
 }
 
-.Button:hover,
-.Button:focus {
+.Button:hover {
   background: #00796b;
+}
+
+.Button:active {
+  background: #00695c;
+}
+
+.Button:focus {
+  outline: 0;
 }

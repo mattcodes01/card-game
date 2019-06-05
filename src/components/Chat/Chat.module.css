@@ -1,5 +1,24 @@
 .Chat {
-  color: green;
-  border: 1px solid black;
   flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.message-list {
+  list-style-type: none;
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-signup-box {
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 5px;
+  border-style: solid;
+  border: 1.5px solid #82b1ff;
 }

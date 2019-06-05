@@ -1,0 +1,11 @@
+.Input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border-style: solid;
+  border: 1.5px solid #82b1ff;
+}
+
+.Input:focus {
+  outline: 0;
+}
