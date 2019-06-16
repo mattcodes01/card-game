@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
-import "firebase/firestore";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/functions";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_apiKey,
@@ -15,5 +16,8 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-export { auth, db };
+firebase.functions().useFunctionsEmulator("http://localhost:5000");
+const functions = firebase.functions();
+
+export { auth, db, functions };
 export default firebase;

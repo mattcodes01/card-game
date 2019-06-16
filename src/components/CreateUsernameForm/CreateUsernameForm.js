@@ -9,7 +9,7 @@ export default function CreateUsernameForm({ onSubmit }) {
       <form onSubmit={onSubmit}>
         <Input type="text" id="username" name="username" labelText="Username" />
         <Button className="mt-2" type="submit">
-          Create
+          {"Create"}
         </Button>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Chat.module.css";
-import { db } from "../../config/firebase-exports";
+import { db, functions } from "../../config/firebase-exports";
 
 // import Users from "../../firebase/Users";
 
@@ -68,14 +68,18 @@ export default class Chat extends React.Component {
     const username = formData.getAll("username")[0];
 
     if (username) {
-      const { user } = this.context;
-      console.log(this.context);
-      db.collection("users")
-        .doc(user.uid)
-        .set({
-          username
-          // updatedAt: new Date()
-        });
+      // const { user } = this.context;
+      // console.log(this.context);
+
+      const addMessage = functions.httpsCallable("addMessage");
+      addMessage({ username: "sadf" }).then(console.log);
+
+      // db.collection("users")
+      //   .doc(user.uid)
+      //   .set({
+      //     username
+      //     // updatedAt: new Date()
+      //   });
 
       // Users.usernameExists(userName);
     }
@@ -141,11 +145,11 @@ export default class Chat extends React.Component {
               className={styles["chat-signup-box"]}
               onClick={() => this.setState({ modalShow: true })}
             >
-              Create username to chat
+              {"Create username to chat"}
             </button>
           )}
           <Button disabled={!hasUsername} onClick={this.sendChatMessage}>
-            Send
+            {"Send"}
           </Button>
         </div>
         <Modal show={modalShow} onClose={this.closeModal}>
