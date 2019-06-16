@@ -13,7 +13,7 @@ export default function Content() {
             <Chat />
           </div>
         ) : (
-          <div>no auth</div>
+          <div>no auth test</div>
         );
       }}
     </AuthContext.Consumer>
