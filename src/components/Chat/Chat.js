@@ -1,14 +1,10 @@
 import React from "react";
 import styles from "./Chat.module.css";
-import { db, functions } from "../../config/firebase-exports";
+import { db } from "../../config/firebase-exports";
 
-// import Users from "../../firebase/Users";
-
-import Modal from "../Modal";
 import AutoScroll from "./AutoScroll";
 import Button from "../Button";
 import Input from "../Form/Input";
-import CreateUsernameForm from "../CreateUsernameForm";
 
 import AuthContext from "../../auth/auth-context.js";
 
@@ -21,8 +17,7 @@ export default class Chat extends React.Component {
 
   state = {
     messages: [],
-    chatMessage: "",
-    modalShow: false
+    chatMessage: ""
   };
 
   componentDidMount() {
@@ -49,40 +44,12 @@ export default class Chat extends React.Component {
     this.unsubscribeToChatMessages();
   }
 
-  closeModal = () => {
-    this.setState({ modalShow: false });
-  };
-
   handleChatMessageChange = event => {
     this.setState({ chatMessage: event.target.value });
   };
 
   handleChatMessageKeyUp = event => {
     if (event.key === "Enter") this.sendChatMessage();
-  };
-
-  handleCreateUsernameFormSubmit = event => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const username = formData.getAll("username")[0];
-
-    if (username) {
-      // const { user } = this.context;
-      // console.log(this.context);
-
-      const addMessage = functions.httpsCallable("addMessage");
-      addMessage({ username: "sadf" }).then(console.log);
-
-      // db.collection("users")
-      //   .doc(user.uid)
-      //   .set({
-      //     username
-      //     // updatedAt: new Date()
-      //   });
-
-      // Users.usernameExists(userName);
-    }
   };
 
   sendChatMessage = () => {
@@ -114,8 +81,8 @@ export default class Chat extends React.Component {
   //     });
 
   render() {
-    const hasUsername = false;
-    const { chatMessage, messages, modalShow } = this.state;
+    const { onModalOpen, hasUsername } = this.props;
+    const { chatMessage, messages } = this.state;
     return (
       <div className={styles.Chat}>
         <AutoScroll>
@@ -130,7 +97,6 @@ export default class Chat extends React.Component {
         <div className={styles["chat-input"]}>
           {hasUsername ? (
             <Input
-              // disabled={!hasUsername}
               id="chat-msg-input"
               name="chat-msg-input"
               type="text"
@@ -143,7 +109,7 @@ export default class Chat extends React.Component {
             <button
               type="button"
               className={styles["chat-signup-box"]}
-              onClick={() => this.setState({ modalShow: true })}
+              onClick={onModalOpen}
             >
               {"Create username to chat"}
             </button>
@@ -152,21 +118,6 @@ export default class Chat extends React.Component {
             {"Send"}
           </Button>
         </div>
-        <Modal show={modalShow} onClose={this.closeModal}>
-          <div
-            style={{
-              padding: 20,
-              width: 250,
-              height: 250,
-              borderRadius: 2,
-              background: "white"
-            }}
-          >
-            <CreateUsernameForm
-              onSubmit={this.handleCreateUsernameFormSubmit}
-            />
-          </div>
-        </Modal>
       </div>
     );
   }

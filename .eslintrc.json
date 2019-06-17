@@ -38,6 +38,7 @@
     }
   },
   "rules": {
+    "arrow-body-style": "warn",
     "arrow-parens": ["warn", "as-needed"],
     "babel/no-invalid-this": "error",
     "comma-dangle": ["error", "never"],

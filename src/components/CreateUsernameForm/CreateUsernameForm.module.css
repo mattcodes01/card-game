@@ -1,2 +1,6 @@
 .CreateUsernameForm {
 }
+
+.error-msg {
+  color: #ff0000;
+}

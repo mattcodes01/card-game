@@ -8,30 +8,41 @@ import Button from "../../Button";
 import SignInButton from "../../SignInButton";
 import AuthContext from "../../../auth/auth-context.js";
 
-export default function Header({ loading }) {
+export default function Header({ loading, username, onSignOut }) {
+  const { isAuthenticated } = React.useContext(AuthContext);
+
   const handleSignIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithRedirect(provider);
   };
 
-  return (
-    <AuthContext.Consumer>
-      {authContext => {
-        function getButton() {
-          return authContext.isAuthenticated ? (
-            <Button onClick={() => auth.signOut()}>Sign Out</Button>
-          ) : (
-            <SignInButton onClick={handleSignIn} />
-          );
-        }
+  const getButton = () => {
+    return isAuthenticated ? (
+      <Button
+        className={styles["links-item"]}
+        onClick={() => {
+          onSignOut();
+          auth.signOut();
+        }}
+      >
+        Sign Out
+      </Button>
+    ) : (
+      <SignInButton
+        // className={styles["links-item"]}
+        onClick={handleSignIn}
+      />
+    );
+  };
 
-        return (
-          <header className={styles.Header}>
-            <div className={styles.brand}>Card Game</div>
-            {loading ? null : getButton()}
-          </header>
-        );
-      }}
-    </AuthContext.Consumer>
+  return (
+    <header className={styles.Header}>
+      <div className={styles.brand}>Card Game</div>
+      <div className={styles.links}>
+        {/* <div className={styles["links-item"]}>asdf</div> */}
+        {username}
+        {loading ? null : getButton()}
+      </div>
+    </header>
   );
 }

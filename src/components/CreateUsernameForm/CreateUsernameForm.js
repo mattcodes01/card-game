@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "./CreateUsernameForm.module.css";
 
 import Input from "../Form/Input";
 import Button from "../Button";
 
-export default function CreateUsernameForm({ onSubmit }) {
+export default function CreateUsernameForm({ onSubmit, errors }) {
   return (
     <div className="CreateUsernameForm">
       <form onSubmit={onSubmit}>
@@ -12,6 +13,7 @@ export default function CreateUsernameForm({ onSubmit }) {
           {"Create"}
         </Button>
       </form>
+      {errors && <p className={styles["error-msg"]}>{errors}</p>}
     </div>
   );
 }
